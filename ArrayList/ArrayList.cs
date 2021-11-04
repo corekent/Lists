@@ -69,7 +69,7 @@ namespace ArrayList
         }
         public void CheckDownSize()
         {
-            if (Length > _array.Length * 0.5)
+            if (Length < _array.Length * 0.5)
             {
                 DownSize();
             }
@@ -103,24 +103,30 @@ namespace ArrayList
             _array = tmpArray;
             Length += array.Length;
         }
-        public int[] AddLast(int value)
+
+        public void AddLast(int value)
         {
-            CheckUpSize();
-            for (int i = 0; i < Length; i++)
-            {
-                int tmp = _array[i + 1];
-                _array[i] = tmp;
-            }
+            CheckUpSize();            
             _array[Length] = value;
-            Length++;
-            return _array;
+            Length++;            
         }
-        public void AddLast(ArrayList list)
+        public void AddLast(ArrayList array)
         {
+            int newLength = Length + array.Length;
 
+            while (newLength >= _array.Length)
+            {
+                Upsize();
+            }
+            for (int i = Length; i < newLength; i++)
+            {
+                _array[i] = array._array[i - Length];
+            }
+
+            Length = newLength;
         }
 
-        public int[] AddAt(int idx, int value)
+        public void AddAt(int idx, int value)
         {
             CheckUpSize();
             if(idx == 0)
@@ -131,15 +137,68 @@ namespace ArrayList
             {
                 AddLast(value);
             }
+            else if(idx < 0 || idx > Length)
+            {
+                throw new IndexOutOfRangeException();
+            }
             else
             {
+                Length++;
                 for (int i = idx; i < Length; i++)
                 {
                     _array[i + 1] = _array[i];
                 }
                 _array[idx] = value;
-            }
-            return _array;
+            }            
         }
+        public void AddAt(ArrayList array, int idx)
+        {
+
+        }
+
+        public void Set(int idx, int value)
+        {
+            if (idx < 0 || idx > Length)
+            {
+                throw new IndexOutOfRangeException();
+            }
+            else
+            {
+                _array[idx] = value;
+            }
+        }
+        public void RemoveFirst()
+        {
+            if(Length == 1)
+            {
+                _array = new int[] { };
+            }
+            else
+            {
+                for (int i = 1; i < Length; i++)
+                {
+                    _array[i] = _array[i - 1];
+                }
+                
+            }
+            Length--;
+            CheckDownSize();
+        }
+        public void RemoveLast()
+        {
+            Length--;
+            CheckDownSize();
+        }
+        public void RemoveAt(int idx)
+        {
+            for (int i = idx + 1; i < Length; i++)
+            {
+                _array[i - 1] = _array[i];
+            }
+            Length--;
+            CheckDownSize();
+        }
+
+
     }
 }
