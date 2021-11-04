@@ -15,10 +15,12 @@ namespace ArrayList
         public ArrayList(int value)
         {
             Length = 1;
+            _array = new int[10];
             _array[0] = value;
         }
         public ArrayList(int[] array)
         {
+            
             Length = array.Length;
             _array = array;
         }
@@ -39,7 +41,7 @@ namespace ArrayList
 
         public void Upsize()
         {
-            int newLength = Length * 2 / 3 + 1;
+            int newLength = _array.Length * 3 / 2 + 1;
             int[] tmpArr = new int[newLength];
             for (int i = 0; i < Length; i++)
             {
@@ -73,22 +75,33 @@ namespace ArrayList
             }
         }
 
-        public int[] AddFirst(int value)
+        public void AddFirst(int value)
         {
             CheckUpSize();
-            Length++;
-
-            for (int i = 1; i < Length; i++)
-            {
-                int tmp = _array[i - 1];
-                _array[i] = tmp;
+            for (int i = Length; i > 0; i--)
+            {                
+                _array[i] = _array[i - 1];
             }
-            _array[0] = value;
-            return _array;
+            _array[0] = value; 
+            Length++;            
         }
-        public void AddFirst(ArrayList list)
+        public void AddFirst(ArrayList array)
         {
-
+            int[] tmpArray = new int[Length + array.Length];
+            for (int i = 0; i < array.Length; i++)
+            {
+                tmpArray[i] = array._array[i];
+            }
+            for (int i = array.Length; i < tmpArray.Length; i++)
+            {
+                tmpArray[i] = _array[i - array.Length];
+            }                        
+            if (tmpArray.Length >= _array.Length)
+            {
+                Upsize();
+            }
+            _array = tmpArray;
+            Length += array.Length;
         }
         public int[] AddLast(int value)
         {
