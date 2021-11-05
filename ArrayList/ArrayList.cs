@@ -2,7 +2,7 @@
 
 namespace ArrayList
 {
-    public class ArrayList
+    public class ArrayList : InterfaceForList
     {
         public int Length;
         private int[] _array;
@@ -346,13 +346,13 @@ namespace ArrayList
             }
         }
 
-        public void SortDesk()
+        public void SortDesc()
         {
-            for (int i = 0; i < Length ; i++)
+            for (int i = 0; i < Length - 1 ; i++)
             {
                 int max = i;
 
-                for (int j = i; j < Length; j++)
+                for (int j = i + 1; j < Length; j++)
                 {
                     if (_array[max] < _array[j])
                     {

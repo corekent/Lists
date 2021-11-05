@@ -374,12 +374,12 @@ namespace ArrayList.Tests
         [TestCase(new int[] { 0 }, new int[] { 0 })]
         [TestCase(new int[] { 0, 3, 2 }, new int[] { 3, 2, 0 })]
         [TestCase(new int[] { 42, 12, 5, 89 }, new int[] { 89, 42, 12, 5 })]
-        public void SortDeskTest(int[] array, int[] expected)
+        public void SortDescTest(int[] array, int[] expected)
         {
             //arrange
             ArrayList arrayForTest = new ArrayList(array);
             //act
-            arrayForTest.SortDesk();
+            arrayForTest.SortDesc();
             int[] actual = arrayForTest.ToArray();
             //assert
             Assert.AreEqual(expected, actual);
