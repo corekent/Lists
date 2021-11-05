@@ -69,9 +69,12 @@ namespace ArrayList
         }
         public void CheckDownSize()
         {
-            if (Length < _array.Length * 0.5)
+            if(_array.Length > 10)
             {
-                DownSize();
+                if(Length < _array.Length * 0.5)
+                {
+                 DownSize();
+                }
             }
         }
 
@@ -168,19 +171,12 @@ namespace ArrayList
             }
         }
         public void RemoveFirst()
-        {
-            if(Length == 1)
+        {                       
+            for (int i = 1; i < _array.Length; i++)
             {
-                _array = new int[] { };
+             _array[i - 1] = _array[i];
             }
-            else
-            {
-                for (int i = 1; i < Length; i++)
-                {
-                    _array[i] = _array[i - 1];
-                }
-                
-            }
+            
             Length--;
             CheckDownSize();
         }
@@ -191,14 +187,183 @@ namespace ArrayList
         }
         public void RemoveAt(int idx)
         {
-            for (int i = idx + 1; i < Length; i++)
+            Length--;
+            for (int i = idx + 1; i < _array.Length; i++)
             {
                 _array[i - 1] = _array[i];
             }
-            Length--;
             CheckDownSize();
         }
+        public void RemoveFirstMultiple(int n)
+        {
+            for(int i = 0; i < n; i++)
+            {
+                RemoveFirst();
+            }     
+        }
+        public void RemoveLastMultiple(int n)
+        {
+            Length -= n;
+            CheckDownSize();
+        }
+        public void RemoveAtMultiple(int idx, int n)
+        {
+            for (int i = 0; i < n; i++)
+            {
+                RemoveAt(idx);
+            }
+            CheckDownSize();
+        }
+        public int RemoveAll(int val)
+        {
+            int count = 0;
 
+            for (int i = 0; i < Length; i++)
+            {
+                if (_array[i] == val)
+                {
+                    RemoveAt(i);
+                    count++;
+                    
+                }
+            }
+            return count;
+        }
+
+        public string Contains(int val)
+        {
+            for (int i = 0; i < Length; i++)
+            {
+                if (val == _array[i])
+                {
+                    return "yes";
+                }
+            }
+            return "no";
+        }
+        public int IndexOf(int val)
+        {
+            for (int i = 0; i < Length; i++)
+            {
+                if (val == _array[i])
+                {
+                    return i;
+                }
+            }
+            return -1;
+        }
+
+        public int GetFirst()
+        {
+            return _array[0];
+        }
+        public int GetLast()
+        {
+            return _array[Length - 1];
+        }
+        public int Get(int idx)
+        {          
+            return _array[idx];
+        }
+        public void Reverse()
+        {
+            for (int i = 0; i < Length / 2; i++)
+            {
+                int tmp = _array[i];
+                _array[i] = _array[Length - i - 1];
+                _array[Length - i - 1] = tmp;
+            }
+        }
+        public int FindMaxElement()
+        {
+            int max = _array[0];
+            for (int i = 1; i < Length; i++)
+            {
+                if (_array[i] > max)
+                {
+                    max = _array[i];
+                }
+            }
+            return max;
+        }
+        public int FindMinElement()
+        {
+            int min = _array[0];
+            for (int i = 1; i < Length; i++)
+            {
+                if (_array[i] < min)
+                {
+                    min = _array[i];
+                }
+            }
+            return min;
+        }
+
+        public int IndexOfMax()
+        {
+            int indexOfMax = 0;
+
+            for (int i = 0; i < Length; i++)
+            {
+                if (_array[indexOfMax] < _array[i])
+                {
+                    indexOfMax = i;
+                }
+            }
+            return indexOfMax;
+        }
+
+        public int IndexOfMin()
+        {
+            int min = 0;
+
+            for (int i = 0; i < Length; i++)
+            {
+                if (_array[min] > _array[i])
+                {
+                    min = i;
+                }
+            }
+            return min;
+        }
+
+        public void Sort()
+        {
+            for (int i = 0; i < Length - 1; i++)
+            {
+                int min = i;
+
+                for (int j = i; j < Length; j++)
+                {
+                    if (_array[min] > _array[j])
+                    {
+                        min = j;
+                    }
+                }
+                int tmp = _array[i];
+                _array[i] = _array[min];
+                _array[min] = tmp;
+            }
+        }
+
+        public void SortDesk()
+        {
+            for (int i = 0; i < Length ; i++)
+            {
+                int max = i;
+
+                for (int j = i; j < Length; j++)
+                {
+                    if (_array[max] < _array[j])
+                    {
+                        max = j;
+                    }
+                }
+                int tmp = _array[i];
+                _array[i] = _array[max];
+                _array[max] = tmp;
+            }
+        }
 
     }
 }
