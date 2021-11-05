@@ -2,7 +2,7 @@
 
 namespace ArrayList
 {
-    public class ArrayList : InterfaceForList
+    public class ArrayList
     {
         public int Length;
         private int[] _array;
