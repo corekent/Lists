@@ -29,17 +29,16 @@ namespace LinkedList
             _head = new Node(value);
             _tail = _head;
         }
-        public LinkedList(int[] values)
+        public LinkedList(int[] array)
         {
-            if(values.Length != 0)
-            {
-                
-                _head = new Node(values[0]);
+            if(array.Length != 0)
+            {                
+                _head = new Node(array[0]);
                 _tail = _head;
 
-                for(int i = 1; i < values.Length; i++)
+                for(int i = 1; i < array.Length; i++)
                 {
-                    AddLast(values[i]);
+                    AddLast(array[i]);
                 }
             }
             else
@@ -48,8 +47,7 @@ namespace LinkedList
                 _tail = null;
             }
         }
-
-        
+                
 
         public int this[int index]
         {
@@ -101,13 +99,89 @@ namespace LinkedList
         }
         public void AddFirst(int val)
         {
-            _head.Next = _head;
+            Node current = _head;             
             _head = new Node(val);
+            _head.Next = current;
         }
+
+        public void AddFirst(LinkedList list)
+        {
+            for (int i = 0; i < list.GetLength(); i++)
+            {
+                AddFirst(list[i]);
+            }
+        }
+
         public void AddLast(int val)
         {
-            _tail.Next = new Node(val);
-            _tail = _tail.Next;
+            if (GetLength() == 0)
+            {
+                _head = new Node(val);
+            }
+            else
+            {
+                _tail.Next = new Node(val);
+                _tail = _tail.Next;
+            }            
+        }
+        public void AddLast(LinkedList list)
+        {                        
+            for (int i = 0; i < list.GetLength(); i++)
+            {
+                AddLast(list[i]);
+            }
+        }
+
+        public void AddAt(int idx, int val)
+        {      
+            if(idx == 0)
+            {
+                AddFirst(val);
+            }
+            else if(idx == GetLength())
+            {
+                AddLast(val);
+            }
+            else
+            {
+                Node current = _head;
+                for (int i = 1; i < idx; i++)
+                {
+                    current = current.Next;
+                }
+                Node tmp = current.Next;
+                current.Next = new Node(val);
+                current.Next.Next = tmp;
+            }            
+        }
+        public void AddAt(int idx, LinkedList list)
+        {
+            if (idx == 0)
+            {
+                AddFirst(list);
+            }
+            else if (idx == GetLength())
+            {
+                AddLast(list);
+            }
+            else
+            {                
+                for(int i = 0; i < list.GetLength(); i++)
+                {
+                    AddAt(i + idx, list[i]);
+                }
+            }
+        }
+        public void Set(int idx, int val)
+        {
+            Node current = _head;
+            for(int i = 0; i < idx; i++)
+            {
+                current = current.Next;
+            }
+            Node tmp = current.Next;
+            current = new Node(val);
+            current.Next = tmp;
         }
 
 
