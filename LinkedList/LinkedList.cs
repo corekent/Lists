@@ -47,7 +47,7 @@ namespace LinkedList
                 _tail = null;
             }
         }
-                
+
 
         public int this[int index]
         {
@@ -70,9 +70,9 @@ namespace LinkedList
                 }
                 current.Value = value;
             }
-        }                  
+        }
 
-        
+
         public int GetLength()
         {
             int summ = 0;
@@ -99,17 +99,18 @@ namespace LinkedList
         }
         public void AddFirst(int val)
         {
-            Node current = _head;             
+            Node current = _head;
             _head = new Node(val);
             _head.Next = current;
+            //Node node = new Node(val);
+            //node.Next = _head;
+            //_head = node;
         }
 
         public void AddFirst(LinkedList list)
         {
-            for (int i = 0; i < list.GetLength(); i++)
-            {
-                AddFirst(list[i]);
-            }
+            list._tail.Next = _head;
+            _head = list._head;
         }
 
         public void AddLast(int val)
@@ -173,15 +174,29 @@ namespace LinkedList
             }
         }
         public void Set(int idx, int val)
-        {
+        {            
             Node current = _head;
-            for(int i = 0; i < idx; i++)
+            for(int i = 1; i < idx; i++)
             {
                 current = current.Next;
             }
-            Node tmp = current.Next;
-            current = new Node(val);
-            current.Next = tmp;
+            Node tmp = current.Next.Next;
+            Node node = new Node(val);
+            current.Next = node;
+            node.Next = tmp;
+        }
+        public void RemoveFirst()
+        {
+            _head = _head.Next;
+        }
+        public void RemoveLast()
+        {
+            Node current = _head;
+            while (current.Next.Next != null)
+            {
+                current = current.Next;
+            }
+            current.Next = null;
         }
 
 

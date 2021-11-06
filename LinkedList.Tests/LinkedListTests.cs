@@ -51,7 +51,7 @@ namespace LinkedList.Tests
         }
 
         [TestCase(new int[] { }, new int[] { 1 }, new int[] { 1 })]
-        [TestCase(new int[] { 1, 2 }, new int[] { -2, -1, 0}, new int[] { -2, -1, 0, 2, 1, 2 })]
+        [TestCase(new int[] { 1, 2 }, new int[] { -2, -1, 0}, new int[] { -2, -1, 0, 1, 2 })]
         [TestCase(new int[] { 1, 1, 1, 1, 1 }, new int[] { 2, 2 }, new int[] { 2, 2, 1, 1, 1, 1, 1 })]
         public void AddFirstTest(int[] array, int[] val, int[] expected)
         {
@@ -108,8 +108,7 @@ namespace LinkedList.Tests
             //assert
             Assert.AreEqual(actual, expected);
         }
-
-        [TestCase(new int[] { 0 }, 0, 1, new int[] { 1 })]
+                
         [TestCase(new int[] { 1, 3, 3 }, 1, 2, new int[] { 1, 2, 3 })]
         [TestCase(new int[] { 1, 1, 1, 1, 1, 1 }, 2, 5, new int[] { 1, 1, 5, 1, 1, 1 })]
         public void SetTest(int[] array, int idx, int val, int[] expected)
@@ -122,5 +121,7 @@ namespace LinkedList.Tests
             //assert
             Assert.AreEqual(actual, expected);
         }
+
+
     }
 }
