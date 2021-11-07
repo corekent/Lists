@@ -4,8 +4,20 @@ namespace ArrayList
 {
     public class ArrayList
     {
-        public int Length;
+        public int Length { get; set; }
         private int[] _array;
+
+        public int this[int index]
+        {
+            get
+            { 
+                return _array[index];
+            }
+            set
+            {                
+                _array[index] = value;
+            }
+        }
 
         public ArrayList()
         {
@@ -90,21 +102,22 @@ namespace ArrayList
         }
         public void AddFirst(ArrayList array)
         {
-            int[] tmpArray = new int[Length + array.Length];
-            for (int i = 0; i < array.Length; i++)
-            {
-                tmpArray[i] = array._array[i];
-            }
-            for (int i = array.Length; i < tmpArray.Length; i++)
-            {
-                tmpArray[i] = _array[i - array.Length];
-            }                        
-            if (tmpArray.Length >= _array.Length)
-            {
-                Upsize();
-            }
-            _array = tmpArray;
-            Length += array.Length;
+            AddAt(array, 0);
+            //int[] tmpArray = new int[Length + array.Length];
+            //for (int i = 0; i < array.Length; i++)
+            //{
+            //    tmpArray[i] = array._array[i];
+            //}
+            //for (int i = array.Length; i < tmpArray.Length; i++)
+            //{
+            //    tmpArray[i] = _array[i - array.Length];
+            //}                        
+            //if (tmpArray.Length >= _array.Length)
+            //{
+            //    Upsize();
+            //}
+            //_array = tmpArray;
+            //Length += array.Length;
         }
 
         public void AddLast(int value)
@@ -115,18 +128,19 @@ namespace ArrayList
         }
         public void AddLast(ArrayList array)
         {
-            int newLength = Length + array.Length;
+            AddAt(array, Length);
+            //int newLength = Length + array.Length;
 
-            while (newLength >= _array.Length)
-            {
-                Upsize();
-            }
-            for (int i = Length; i < newLength; i++)
-            {
-                _array[i] = array._array[i - Length];
-            }
+            //while (newLength >= _array.Length)
+            //{
+            //    Upsize();
+            //}
+            //for (int i = Length; i < newLength; i++)
+            //{
+            //    _array[i] = array._array[i - Length];
+            //}
 
-            Length = newLength;
+            //Length = newLength;
         }
 
         public void AddAt(int idx, int value)
@@ -156,7 +170,26 @@ namespace ArrayList
         }
         public void AddAt(ArrayList array, int idx)
         {
-
+            if (idx < 0 || idx > Length)
+            {
+                throw new IndexOutOfRangeException();
+            }
+            while (_array.Length <= Length + array.Length)
+            {
+                Upsize();
+            }
+            for (int i = Length - 1; i >= idx; i--)
+            {
+                _array[i + array.Length] = _array[i];
+            }
+            int j = 0;
+            
+            for (int i = idx; i < idx + array.Length; i++)
+            {
+                _array[i] = array[j];
+                j++;
+            }
+            Length += array.Length;
         }
 
         public void Set(int idx, int value)

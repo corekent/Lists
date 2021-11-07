@@ -48,7 +48,6 @@ namespace LinkedList
             }
         }
 
-
         public int this[int index]
         {
             get
@@ -72,7 +71,6 @@ namespace LinkedList
             }
         }
 
-
         public int GetLength()
         {
             int summ = 0;
@@ -83,8 +81,7 @@ namespace LinkedList
                 current = current.Next;
             }            
             return summ;
-        }
-    
+        }    
         public int[] ToArray()
         {
             int length = GetLength();
@@ -192,13 +189,64 @@ namespace LinkedList
         public void RemoveLast()
         {
             Node current = _head;
-            while (current.Next.Next != null)
+            if(GetLength() == 1)
+            {
+                _head = null;
+                _tail = null;
+            }
+            else
+            {
+                while (current.Next.Next != null)
+                {
+                    current = current.Next;
+                }
+                current.Next = null;
+            }
+            
+        }
+        public void RemoveAt(int idx)
+        {
+            Node current = _head;
+            if (GetLength() == 1)
+            {
+                _head = null;
+                _tail = null;
+            }
+            else
+            {
+                for (int i = 1; i < idx; i++)
+                {
+                    current = current.Next;
+                }
+                current.Next = current.Next.Next;
+            }                
+        }
+        public void RemoveFirstMultiple(int n)
+        {
+            for(int i = 0; i < n; i++)
+            {
+                RemoveFirst();
+            }
+        }
+        public void RemoveLastMultiple(int n)
+        {
+            for (int i = 0; i < n; i++)
+            {
+                RemoveLast();
+            }
+        }
+        public void RemoveAtMultiple(int idx, int n)
+        {
+            Node current = _head;
+            for (int i = 0; i < idx; i++)
             {
                 current = current.Next;
             }
-            current.Next = null;
+            for (int i = 0; i < n; i++)
+            {
+                current = current.Next.Next;
+            }
         }
-
 
     }
 }

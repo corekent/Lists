@@ -112,6 +112,21 @@ namespace ArrayList.Tests
             Assert.AreEqual(expected, actual);
         }
 
+        [TestCase(new int[] { }, 0, new int[] { 1 }, new int[] { 1 })]
+        [TestCase(new int[] { 1, 2 }, 2, new int[] { 4, 5, 6 }, new int[] { 1, 2, 4, 5, 6 })]
+        [TestCase(new int[] { 1, 1, 1, 1, 1 }, 3, new int[] { 2, 2 }, new int[] { 1, 1, 1, 2, 2, 1, 1 })]
+        public void AddAtTest(int[] array, int idx, int[] val, int[] expected)
+        {
+            //arrange
+            ArrayList list = new ArrayList(array);
+            ArrayList valList = new ArrayList(val);
+            //act 
+            list.AddAt( valList, idx);
+            int[] actual = list.ToArray();
+            //assert
+            Assert.AreEqual(actual, expected);
+        }
+
         [TestCase(0, 1, new int[] { 0 }, new int[] { 1 })]
         [TestCase(1, 1, new int[] { 0, 2 }, new int[] { 0, 1 })]
         [TestCase(1, 1, new int[] { 0, 2, 2 }, new int[] { 0, 1, 2 })]

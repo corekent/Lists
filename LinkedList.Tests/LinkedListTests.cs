@@ -122,6 +122,90 @@ namespace LinkedList.Tests
             Assert.AreEqual(actual, expected);
         }
 
+        [TestCase(new int[] { 1 }, new int[] { })]
+        [TestCase(new int[] { 1, 2 }, new int[] { 2 })]
+        [TestCase(new int[] { 1, 7, 12, 42, 8 }, new int[] { 7, 12, 42, 8 })]
+        public void RemoveFirstTest(int[] array, int[] expected)
+        {
+            //arrange
+            LinkedList list = new LinkedList(array);
+            //act 
+            list.RemoveFirst();
+            int[] actual = list.ToArray();
+            //assert
+            Assert.AreEqual(actual, expected);
+        }
+
+        [TestCase(new int[] { 1 }, new int[] { })]
+        [TestCase(new int[] { 1, 2 }, new int[] { 1 })]
+        [TestCase(new int[] { 1, 7, 12, 42, 8 }, new int[] { 1, 7, 12, 42 })]
+        public void RemoveLastTest(int[] array, int[] expected)
+        {
+            //arrange
+            LinkedList list = new LinkedList(array);
+            //act 
+            list.RemoveLast();
+            int[] actual = list.ToArray();
+            //assert
+            Assert.AreEqual(actual, expected);
+        }
+
+        [TestCase(new int[] { 1 }, 0, new int[] { })]
+        [TestCase(new int[] { 1, 2 }, 1, new int[] { 1 })]
+        [TestCase(new int[] { 1, 7, 12, 42, 8 }, 2, new int[] { 1, 7, 42, 8 })]
+        public void RemoveAtTest(int[] array, int idx, int[] expected)
+        {
+            //arrange
+            LinkedList list = new LinkedList(array);
+            //act 
+            list.RemoveAt(idx);
+            int[] actual = list.ToArray();
+            //assert
+            Assert.AreEqual(actual, expected);
+        }
+
+        [TestCase(new int[] { 1 }, 1, new int[] { })]
+        [TestCase(new int[] { 1, 2 }, 1, new int[] { 2 })]
+        [TestCase(new int[] { 1, 7, 12, 42, 8 }, 3, new int[] { 42, 8 })]
+        public void RemoveFirstMultipleTest(int[] array, int n, int[] expected)
+        {
+            //arrange
+            LinkedList list = new LinkedList(array);
+            //act 
+            list.RemoveFirstMultiple(n);
+            int[] actual = list.ToArray();
+            //assert
+            Assert.AreEqual(actual, expected);
+        }
+
+        [TestCase(new int[] { 1 }, 1, new int[] { })]
+        [TestCase(new int[] { 1, 2 }, 1, new int[] { 1 })]
+        [TestCase(new int[] { 1, 7, 12, 42, 8 }, 3, new int[] { 1, 7 })]
+        public void RemoveLastMultiple(int[] array, int n, int[] expected)
+        {
+            //arrange
+            LinkedList list = new LinkedList(array);
+            //act 
+            list.RemoveLastMultiple(n);
+            int[] actual = list.ToArray();
+            //assert
+            Assert.AreEqual(actual, expected);
+        }
+
+        [TestCase(new int[] { 0 }, 0, 1, new int[] { })]
+        [TestCase(new int[] { 0, 1, 2 }, 2, 1, new int[] { 0, 1 })]
+        [TestCase(new int[] { 1, 1, 1, 1, 1 }, 1, 4, new int[] { 1 })]
+        [TestCase(new int[] { 1, 2, 7, 42, 12, 50 }, 2, 3, new int[] { 1, 2, 50 })]
+        public void RemoveAtMultiple(int[] array, int idx, int n, int[] expected)
+        {
+            //arrange
+            LinkedList arrayForTest = new LinkedList(array);
+            //act
+            arrayForTest.RemoveAtMultiple(idx, n);
+            int[] actual = arrayForTest.ToArray();
+            //assert
+            Assert.AreEqual(expected, actual);
+        }
 
     }
 }
