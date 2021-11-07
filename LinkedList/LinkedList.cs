@@ -237,16 +237,143 @@ namespace LinkedList
         }
         public void RemoveAtMultiple(int idx, int n)
         {
+            int length = GetLength();
+            if (length == 0)
+            {
+                throw new IndexOutOfRangeException();
+            }
+            else if (length == 1)
+            {
+                _head = null;
+                _tail = null;
+            }
+            else
+            {
+                Node current = _head;
+                for (int i = 1; i < idx; i++)
+                {
+                    current = current.Next;
+                }
+                Node tmp = current;
+                for (int i = 0; i < n; i++)
+                {
+                    current = current.Next;
+                }
+                tmp.Next = current.Next;
+            }            
+        }
+        public int RemoveFirst(int val)
+        {
+            int idx = IndexOf(val);
+            RemoveAt(idx);
+            return idx;
+        }
+        public int RemoveAll(int val)
+        {            
+            int count = 0;
+            int idx = IndexOf(val);
+            while(idx != -1)
+            {
+                RemoveAt(idx);
+                count++;
+                idx = IndexOf(val);
+            }
+            return count;
+        }
+        public string Contains(int val)
+        {            
+            Node current = _head;
+            int length = GetLength();
+            for (int i = 0; i < length; i++)
+            {
+                if (current.Value == val)
+                {
+                    return "yes";
+                }
+                current = current.Next;
+            }
+            return "no";
+        }
+        public int IndexOf(int val)
+        {
+            Node current = _head;
+            int length = GetLength();
+            for (int i = 0; i < length; i++)
+            {
+                if (current.Value == val)
+                {
+                    return i;
+                }
+                current = current.Next;
+            }
+            return -1;
+        }
+        public int GetFirst()
+        {
+            return _head.Value;
+        }
+        public int GetLast()
+        {
+            return _tail.Value;
+        }
+        public int Get(int idx)
+        {
             Node current = _head;
             for (int i = 0; i < idx; i++)
             {
                 current = current.Next;
             }
-            for (int i = 0; i < n; i++)
-            {
-                current = current.Next.Next;
-            }
+            return current.Value;
         }
+        public void Reverse()
+        {
+            Node current = _head;
+            while (current.Next != null)
+            {
+                Node tmp = current.Next;
+                current.Next = tmp.Next;
+                tmp.Next = _head;
+                _head = tmp;
+            }
+            _tail = current;
+        }
+        public int Max()
+        {
+            Node current = _head;
+            int max = current.Value;
+            while (current != null)
+            {
+                if (current.Value > max)
+                {
+                    max = current.Value;
+                }
+                current = current.Next;
+            }            
+            return max;
+        }
+        public int Min()
+        {
+            Node current = _head;
+            int min = _head.Value;
+            while (current != null)
+            {
+                if (current.Value < min)
+                {
+                    min = current.Value;
+                }
+                current = current.Next;
+            }
+            return min;
+        }
+        public int IndexOfMax()
+        {
+            return IndexOf(Max());
+        }
+        public int IndexOfMin()
+        {
+            return IndexOf(Min());
+        }
+
 
     }
 }
