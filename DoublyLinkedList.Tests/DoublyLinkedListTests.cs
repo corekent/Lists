@@ -329,6 +329,7 @@ namespace DoublyLinkedList.Tests
         }
 
         [TestCase(new int[] { 0 }, 0)]
+        [TestCase(new int[] { -2, 4, 87, 3 }, 87)]
         [TestCase(new int[] { 0, 1, 2 }, 2)]
         [TestCase(new int[] { 1, 42, 7, 42, 12, 50, 42 }, 50)]
         public void MaxTest(int[] array, int expected)
@@ -377,6 +378,34 @@ namespace DoublyLinkedList.Tests
             DoublyLinkedList arrayForTest = new DoublyLinkedList(array);
             //act
             int actual = arrayForTest.IndexOfMin();
+            //assert
+            Assert.AreEqual(expected, actual);
+        }
+
+        [TestCase(new int[] { 0 }, new int[] { 0 })]
+        [TestCase(new int[] { 0, 3, 2 }, new int[] { 0, 2, 3 })]
+        [TestCase(new int[] { 42, 12, 5, 89 }, new int[] { 5, 12, 42, 89 })]
+        public void SortTest(int[] array, int[] expected)
+        {
+            //arrange
+            DoublyLinkedList arrayForTest = new DoublyLinkedList(array);
+            //act
+            arrayForTest.Sort();
+            int[] actual = arrayForTest.ToArray();
+            //assert
+            Assert.AreEqual(expected, actual);
+        }
+
+        [TestCase(new int[] { 0 }, new int[] { 0 })]
+        [TestCase(new int[] { 0, 3, 2 }, new int[] { 3, 2, 0 })]
+        [TestCase(new int[] { 42, 12, 5, 89 }, new int[] { 89, 42, 12, 5 })]
+        public void SortDescTest(int[] array, int[] expected)
+        {
+            //arrange
+            DoublyLinkedList arrayForTest = new DoublyLinkedList(array);
+            //act
+            arrayForTest.SortDesc();
+            int[] actual = arrayForTest.ToArray();
             //assert
             Assert.AreEqual(expected, actual);
         }
