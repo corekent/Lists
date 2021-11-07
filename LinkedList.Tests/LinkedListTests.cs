@@ -380,5 +380,33 @@ namespace LinkedList.Tests
             //assert
             Assert.AreEqual(expected, actual);
         }
+
+        [TestCase(new int[] { 0 }, new int[] { 0 })]
+        [TestCase(new int[] { 0, 3, 2 }, new int[] { 0, 2, 3 })]
+        [TestCase(new int[] { 42, 12, 5, 89 }, new int[] { 5, 12, 42, 89 })]
+        public void SortTest(int[] array, int[] expected)
+        {
+            //arrange
+            LinkedList arrayForTest = new LinkedList(array);
+            //act
+            arrayForTest.Sort();
+            int[] actual = arrayForTest.ToArray();
+            //assert
+            Assert.AreEqual(expected, actual);
+        }
+
+        [TestCase(new int[] { 0 }, new int[] { 0 })]
+        [TestCase(new int[] { 0, 3, 2 }, new int[] { 3, 2, 0 })]
+        [TestCase(new int[] { 42, 12, 5, 89 }, new int[] { 89, 42, 12, 5 })]
+        public void SortDescTest(int[] array, int[] expected)
+        {
+            //arrange
+            LinkedList arrayForTest = new LinkedList(array);
+            //act
+            arrayForTest.SortDesc();
+            int[] actual = arrayForTest.ToArray();
+            //assert
+            Assert.AreEqual(expected, actual);
+        }
     }
 }

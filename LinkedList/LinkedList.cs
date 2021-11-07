@@ -374,6 +374,40 @@ namespace LinkedList
             return IndexOf(Min());
         }
 
+        //Не понимаю почему не работают сортировки :(
+
+
+        public void Sort()
+        {
+            int length = GetLength();
+            int max;
+            int idx;
+            LinkedList tmp = new LinkedList();
+            while (length != 0)
+            {
+                max = Max();
+                idx = IndexOf(max);
+                tmp.AddFirst(max);
+                RemoveAt(idx);
+            }
+            _head = tmp._head;
+        }
+        public void SortDesc()
+        {            
+            int length = GetLength();
+            int min;
+            int idx;
+            LinkedList tmp = new LinkedList();
+            while (length != 0)
+            {
+                min = Min();
+                idx = IndexOf(min);
+                tmp.AddFirst(min);
+                RemoveAt(idx);
+            }
+            _head = tmp._head;
+        }
+
 
     }
 }
