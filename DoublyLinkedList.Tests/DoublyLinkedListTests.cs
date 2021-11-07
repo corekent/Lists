@@ -1,13 +1,14 @@
 using NUnit.Framework;
 
-namespace LinkedList.Tests
+namespace DoublyLinkedList.Tests
 {
-    public class LinkedListTests
+    public class DoublyLinkedListTests
     {
         [SetUp]
         public void Setup()
         {
         }
+
         //arrange
         //act
         //assert
@@ -17,7 +18,7 @@ namespace LinkedList.Tests
         public void GetLengthTest(int[] array, int expected)
         {
             //arrange
-            LinkedList list = new LinkedList(array);
+            DoublyLinkedList list = new DoublyLinkedList(array);
             //act 
             int actual = list.GetLength();
             //assert
@@ -30,7 +31,7 @@ namespace LinkedList.Tests
         public void ToArrayTest(int[] array, int[] expected)
         {
             //arrange
-            LinkedList arrayForTest = new LinkedList(array);
+            DoublyLinkedList arrayForTest = new DoublyLinkedList(array);
             //act
             int[] actual = arrayForTest.ToArray();
             //assert
@@ -39,27 +40,13 @@ namespace LinkedList.Tests
 
         [TestCase(new int[] { }, 0, new int[] { 0 })]
         [TestCase(new int[] { 1, 2 }, 2, new int[] { 2, 1, 2 })]
-        [TestCase(new int[] { 1, 1, 1, 1, 1 }, 5, new int[] { 5, 1, 1, 1, 1, 1 })]
+        [TestCase(new int[] { 1, 1, 1, 1, 1 }, 5, new int[] { 5, 1, 1, 1, 1, 1 })]             
         public void AddFirstTest(int[] array, int val, int[] expected)
         {
             //arrange
-            LinkedList list = new LinkedList(array);
+            DoublyLinkedList list = new DoublyLinkedList(array);
             //act 
             list.AddFirst(val);
-            int[] actual = list.ToArray();
-            //assert
-            Assert.AreEqual(actual, expected);
-        }
-
-        [TestCase(new int[] { }, 0, new int[] { 0 })]
-        [TestCase(new int[] { 1, 2 }, 2, new int[] { 1, 2, 2 })]
-        [TestCase(new int[] { 1, 1, 1, 1, 1 }, 5, new int[] { 1, 1, 1, 1, 1, 5 })]
-        public void AddLastTest(int[] array, int val, int[] expected)
-        {
-            //arrange
-            LinkedList list = new LinkedList(array);
-            //act 
-            list.AddLast(val);
             int[] actual = list.ToArray();
             //assert
             Assert.AreEqual(actual, expected);
@@ -71,10 +58,24 @@ namespace LinkedList.Tests
         public void AddFirstTest(int[] array, int[] val, int[] expected)
         {
             //arrange
-            LinkedList list = new LinkedList(array);
-            LinkedList valList = new LinkedList(val);
+            DoublyLinkedList list = new DoublyLinkedList(array);
+            DoublyLinkedList valList = new DoublyLinkedList(val);
             //act 
             list.AddFirst(valList);
+            int[] actual = list.ToArray();
+            //assert
+            Assert.AreEqual(actual, expected);
+        }
+
+        [TestCase(new int[] { }, 0, new int[] { 0 })]
+        [TestCase(new int[] { 1, 2 }, 2, new int[] { 1, 2, 2 })]
+        [TestCase(new int[] { 1, 1, 1, 1, 1 }, 5, new int[] { 1, 1, 1, 1, 1, 5 })]
+        public void AddLastTest(int[] array, int val, int[] expected)
+        {
+            //arrange
+            DoublyLinkedList list = new DoublyLinkedList(array);
+            //act 
+            list.AddLast(val);
             int[] actual = list.ToArray();
             //assert
             Assert.AreEqual(actual, expected);
@@ -86,8 +87,8 @@ namespace LinkedList.Tests
         public void AddLastTest(int[] array, int[] val, int[] expected)
         {
             //arrange
-            LinkedList list = new LinkedList(array);
-            LinkedList valList = new LinkedList(val);
+            DoublyLinkedList list = new DoublyLinkedList(array);
+            DoublyLinkedList valList = new DoublyLinkedList(val);
             //act 
             list.AddLast(valList);
             int[] actual = list.ToArray();
@@ -101,7 +102,7 @@ namespace LinkedList.Tests
         public void AddAtTest(int[] array, int val, int idx, int[] expected)
         {
             //arrange
-            LinkedList list = new LinkedList(array);
+            DoublyLinkedList list = new DoublyLinkedList(array);
             //act 
             list.AddAt(idx, val);
             int[] actual = list.ToArray();
@@ -115,8 +116,8 @@ namespace LinkedList.Tests
         public void AddAtTest(int[] array, int idx, int[] val, int[] expected)
         {
             //arrange
-            LinkedList list = new LinkedList(array);
-            LinkedList valList = new LinkedList(val);
+            DoublyLinkedList list = new DoublyLinkedList(array);
+            DoublyLinkedList valList = new DoublyLinkedList(val);
             //act 
             list.AddAt(idx, valList);
             int[] actual = list.ToArray();
@@ -129,7 +130,7 @@ namespace LinkedList.Tests
         public void SetTest(int[] array, int idx, int val, int[] expected)
         {
             //arrange
-            LinkedList list = new LinkedList(array);
+            DoublyLinkedList list = new DoublyLinkedList(array);
             //act 
             list.Set(idx, val);
             int[] actual = list.ToArray();
@@ -143,7 +144,7 @@ namespace LinkedList.Tests
         public void RemoveFirstTest(int[] array, int[] expected)
         {
             //arrange
-            LinkedList list = new LinkedList(array);
+            DoublyLinkedList list = new DoublyLinkedList(array);
             //act 
             list.RemoveFirst();
             int[] actual = list.ToArray();
@@ -157,7 +158,7 @@ namespace LinkedList.Tests
         public void RemoveLastTest(int[] array, int[] expected)
         {
             //arrange
-            LinkedList list = new LinkedList(array);
+            DoublyLinkedList list = new DoublyLinkedList(array);
             //act 
             list.RemoveLast();
             int[] actual = list.ToArray();
@@ -171,7 +172,7 @@ namespace LinkedList.Tests
         public void RemoveAtTest(int[] array, int idx, int[] expected)
         {
             //arrange
-            LinkedList list = new LinkedList(array);
+            DoublyLinkedList list = new DoublyLinkedList(array);
             //act 
             list.RemoveAt(idx);
             int[] actual = list.ToArray();
@@ -185,7 +186,7 @@ namespace LinkedList.Tests
         public void RemoveFirstMultipleTest(int[] array, int n, int[] expected)
         {
             //arrange
-            LinkedList list = new LinkedList(array);
+            DoublyLinkedList list = new DoublyLinkedList(array);
             //act 
             list.RemoveFirstMultiple(n);
             int[] actual = list.ToArray();
@@ -199,7 +200,7 @@ namespace LinkedList.Tests
         public void RemoveLastMultiple(int[] array, int n, int[] expected)
         {
             //arrange
-            LinkedList list = new LinkedList(array);
+            DoublyLinkedList list = new DoublyLinkedList(array);
             //act 
             list.RemoveLastMultiple(n);
             int[] actual = list.ToArray();
@@ -208,13 +209,12 @@ namespace LinkedList.Tests
         }
 
         [TestCase(new int[] { 0 }, 0, 1, new int[] { })]
-        [TestCase(new int[] { 0, 1, 2 }, 2, 1, new int[] { 0, 1 })]
         [TestCase(new int[] { 1, 1, 1, 1, 1 }, 1, 4, new int[] { 1 })]
         [TestCase(new int[] { 1, 2, 7, 42, 12, 50 }, 2, 3, new int[] { 1, 2, 50 })]
         public void RemoveAtMultiple(int[] array, int idx, int n, int[] expected)
         {
             //arrange
-            LinkedList arrayForTest = new LinkedList(array);
+            DoublyLinkedList arrayForTest = new DoublyLinkedList(array);
             //act
             arrayForTest.RemoveAtMultiple(idx, n);
             int[] actual = arrayForTest.ToArray();
@@ -228,7 +228,7 @@ namespace LinkedList.Tests
         public void RemoveFirstTest(int[] array, int val, int expected)
         {
             //arrange
-            LinkedList list = new LinkedList(array);
+            DoublyLinkedList list = new DoublyLinkedList(array);
             //act             
             int actual = list.RemoveFirst(val);
             //assert
@@ -242,7 +242,7 @@ namespace LinkedList.Tests
         public void RemoveAll(int[] array, int val, int expected)
         {
             //arrange
-            LinkedList list = new LinkedList(array);
+            DoublyLinkedList list = new DoublyLinkedList(array);
             //act            
             int actual = list.RemoveAll(val);
             //assert
@@ -255,7 +255,7 @@ namespace LinkedList.Tests
         public void ContainsTest(int[] array, int val, string expected)
         {
             //arrange
-            LinkedList arrayForTest = new LinkedList(array);
+            DoublyLinkedList arrayForTest = new DoublyLinkedList(array);
             //act
             string actual = arrayForTest.Contains(val);
             //assert
@@ -268,7 +268,7 @@ namespace LinkedList.Tests
         public void IndexOfTest(int[] array, int val, int expected)
         {
             //arrange
-            LinkedList arrayForTest = new LinkedList(array);
+            DoublyLinkedList arrayForTest = new DoublyLinkedList(array);
             //act
             int actual = arrayForTest.IndexOf(val);
             //assert
@@ -281,7 +281,7 @@ namespace LinkedList.Tests
         public void GetFirstTest(int[] array, int expected)
         {
             //arrange
-            LinkedList arrayForTest = new LinkedList(array);
+            DoublyLinkedList arrayForTest = new DoublyLinkedList(array);
             //act
             int actual = arrayForTest.GetFirst();
             //assert
@@ -294,7 +294,7 @@ namespace LinkedList.Tests
         public void GetLastTest(int[] array, int expected)
         {
             //arrange
-            LinkedList arrayForTest = new LinkedList(array);
+            DoublyLinkedList arrayForTest = new DoublyLinkedList(array);
             //act
             int actual = arrayForTest.GetLast();
             //assert
@@ -307,7 +307,7 @@ namespace LinkedList.Tests
         public void GetTest(int[] array, int index, int expected)
         {
             //arrange
-            LinkedList arrayForTest = new LinkedList(array);
+            DoublyLinkedList arrayForTest = new DoublyLinkedList(array);
             //act
             int actual = arrayForTest.Get(index);
             //assert
@@ -320,7 +320,7 @@ namespace LinkedList.Tests
         public void ReverseTest(int[] array, int[] expected)
         {
             //arrange
-            LinkedList arrayForTest = new LinkedList(array);
+            DoublyLinkedList arrayForTest = new DoublyLinkedList(array);
             //act
             arrayForTest.Reverse();
             int[] actual = arrayForTest.ToArray();
@@ -334,7 +334,7 @@ namespace LinkedList.Tests
         public void MaxTest(int[] array, int expected)
         {
             //arrange
-            LinkedList arrayForTest = new LinkedList(array);
+            DoublyLinkedList arrayForTest = new DoublyLinkedList(array);
             //act
             int actual = arrayForTest.Max();
             //assert
@@ -347,7 +347,7 @@ namespace LinkedList.Tests
         public void MinTest(int[] array, int expected)
         {
             //arrange
-            LinkedList arrayForTest = new LinkedList(array);
+            DoublyLinkedList arrayForTest = new DoublyLinkedList(array);
             //act
             int actual = arrayForTest.Min();
             //assert
@@ -360,7 +360,7 @@ namespace LinkedList.Tests
         public void IndexOfMaxTest(int[] array, int expected)
         {
             //arrange
-            LinkedList arrayForTest = new LinkedList(array);
+            DoublyLinkedList arrayForTest = new DoublyLinkedList(array);
             //act
             int actual = arrayForTest.IndexOfMax();
             //assert
@@ -374,11 +374,12 @@ namespace LinkedList.Tests
         public void IndexOfMinTest(int[] array, int expected)
         {
             //arrange
-            LinkedList arrayForTest = new LinkedList(array);
+            DoublyLinkedList arrayForTest = new DoublyLinkedList(array);
             //act
             int actual = arrayForTest.IndexOfMin();
             //assert
             Assert.AreEqual(expected, actual);
         }
+
     }
 }

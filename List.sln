@@ -13,6 +13,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ArrayList.Tests", "ArrayLis
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LinkedList.Tests", "LinkedList.Tests\LinkedList.Tests.csproj", "{B82EC5C0-E974-472C-8231-6CEB5D71EEE2}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DoublyLinkedList", "DoublyLinkedList\DoublyLinkedList.csproj", "{9F292D71-7C4F-4123-9C18-EE880AFED946}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DoublyLinkedList.Tests", "DoublyLinkedList.Tests\DoublyLinkedList.Tests.csproj", "{9067B77D-C73A-43F0-AEDB-D29AAA76C6C2}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,6 +43,14 @@ Global
 		{B82EC5C0-E974-472C-8231-6CEB5D71EEE2}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B82EC5C0-E974-472C-8231-6CEB5D71EEE2}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B82EC5C0-E974-472C-8231-6CEB5D71EEE2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9F292D71-7C4F-4123-9C18-EE880AFED946}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9F292D71-7C4F-4123-9C18-EE880AFED946}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9F292D71-7C4F-4123-9C18-EE880AFED946}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9F292D71-7C4F-4123-9C18-EE880AFED946}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9067B77D-C73A-43F0-AEDB-D29AAA76C6C2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9067B77D-C73A-43F0-AEDB-D29AAA76C6C2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9067B77D-C73A-43F0-AEDB-D29AAA76C6C2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9067B77D-C73A-43F0-AEDB-D29AAA76C6C2}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
